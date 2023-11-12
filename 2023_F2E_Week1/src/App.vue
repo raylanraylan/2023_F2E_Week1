@@ -1,6 +1,5 @@
 <script setup>
 
-  // document.querySelector('.swiper-pagination').style.position = ''
 </script>
 <script>
   // Import Swiper Vue.js components
@@ -11,7 +10,7 @@
 
   import 'swiper/css/pagination';
 
-  // import './style.css';
+  import '@/assets/swiper.css';
 
   // import required modules
   import { Pagination } from 'swiper/modules';
@@ -215,7 +214,24 @@
         </div>
       </article>
     </section>
-    <section class="donate"></section>
+    <section class="donate">
+      <div class="donate_container">
+        <div class="donate_title_text_img">
+          <img src="./assets/img/small donation.png" alt="小額捐款">
+        </div>
+        <p class="donate_text">您的小筆捐款，
+          是每隻毛孩未來的大大動力！</p>
+        <div class="donate_totalAmount">
+          <div class="donate_totalAmount_text_img">
+            <img src="./assets/img/total amount.png" alt="累積總金額">
+          </div>
+          <span class="amount">NT$<span class="number">987,655,873</span></span>
+        </div>
+        <button type="button" class="donate_button">
+          <img src="./assets/img/Btn.png" alt="前往捐款的按鈕">
+        </button>
+      </div>
+    </section>
     <section class="public_feedback">
       <div class="public_feedback_container"></div>
     </section>
@@ -227,7 +243,6 @@
 </template>
 
 <style lang="scss" scoped>  
-@import "@/scss/swiper.scss";
 //nav
 nav{
   margin: 0 5px 0;
@@ -272,7 +287,6 @@ main{
   }
 
   &_text>h5{
-    margin-bottom: 10px;
     text-align: center;
     word-break: keep-all;
   }
@@ -303,93 +317,98 @@ main{
 
 .cover_container{
   position: relative;
-  padding: 20px 0 20px;
+  padding: 20px 0 35px;
 }
 
 .election_text_img{
   text-align: center;
 } 
 
-
-
 h3{
+  margin-bottom: 25px;
   text-align: center;
-  margin-bottom: 30px;
+  color:$dark1;
 }
 
 .news{
-  padding: 20px 0 50px;
-.card{
-  position: relative;
-  border-radius: 8px;
-  &_date{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 65px;
-    height: 65px;
+  padding: 0 0 30px;
+  .card{
+    position: relative;
+    border-radius: 8px;
+    &_date{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 65px;
+      height: 65px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-    background-color: $secondary_green;
-    border-radius: 0 8px 0 0;
-    .day,.month{
-      font-weight: 700;
-      color:white;
+      background-color: $secondary_green;
+      border-radius: 0 8px 0 0;
+      .day,.month{
+        font-weight: 700;
+        color:white;
+      }
+      .day{
+        font-size: 30px;
+      }
+      .month{
+        font-size: $font_normal;
+        line-height: 20px; 
+      }
     }
-    .day{
-      font-size: 30px;
+
+    &-title{
+      margin-bottom: 10px;
+      color:$dark1;
     }
-    .month{
-      font-size: $font_normal;
-      line-height: 20px; 
+
+    &-img{
+      height: 200px;
+    }
+
+    &-body{
+      text-align: left;
+      padding: 15px;
+
+    }
+
+    &-text{
+      font-size: $font-normal;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
   }
-
-  &-img{
-    height: 200px;
-  }
-
-  &-body{
-    text-align: left;
-    padding: 15px;
-  }
-
-  &-title{
-    margin-bottom: 10px;
-  }
-
-  &-text{
-    font-size: $font-normal;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-  }
-}
 }
 
 .policy{
-  padding: 20px 31.5px 50px;
+  padding: 20px 0 50px;
 
   article{
     display:flex;
     flex-direction: column;
+    align-items: center;
     gap:20px;
   }
 
   .card{
+    width: 330px;
     padding:15px;
     border-radius: 8px;
     background-color: $light5;
+
+    letter-spacing:-0.4px;
     &_content-number{
       width: 68px;
       height: 34px;
       padding: 5px 10px;
       margin-bottom: 10px;
-      border-radius: 0 8px;
+      border-radius: 8px 0;
       background-color: $secondary_green;
       font-size: $font_medium;
       color:$light5;
@@ -397,7 +416,51 @@ h3{
     &-body{
       padding:0;
     }
+
+    &-title{
+      margin-bottom: 10px;
+      color:$dark1;
+    }
+
+    &-text{
+      padding-left: 15px;
+      color: $dark2;
+    }
   }
 }
+
+.donate{
+  padding:45px 16.5px;
+  background: no-repeat center/cover url('./assets/img/female-hand-with-cat-paw-kitten-s-paw-woman-finger-contrast-close-up 1.png');
+
+  &_container{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    padding: 62px 30px;
+    background-color: $light5;
+    border-radius: 80px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    text-align: center;
+  }
+
+  &_text{
+    word-break: keep-all;
+  }
+  .amount{
+    font-size: 30px;
+    font-weight: 700;
+    -webkit-text-stroke:2px $main_blue;
+    // text-shadow: 1px 1px 0 $main_blue;
+    color:$main_blue;
+  }
+
+  &_button{
+    border: none;
+    background-color: white;
+  }
+}
+
+
 
 </style>
