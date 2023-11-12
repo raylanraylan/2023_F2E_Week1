@@ -4,7 +4,6 @@
   box-sizing: border-box;
   margin: 0;
   font-family: 'Noto Sans TC','Roboto', sans-serif;
-  font-weight: regular;
   line-height: 1.5;
 }
 
@@ -19,7 +18,7 @@ a{
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-weight: bold;
+  font-weight: 700;
 }
 
 h1{
