@@ -233,12 +233,76 @@
       </div>
     </section>
     <section class="public_feedback">
-      <div class="public_feedback_container"></div>
+      <form class="public_feedback_container">
+        <h3 class="public_feedback_title_text_img"><img src="./assets/img/feedback.png"></h3>
+        <h5 class="public_feedback_slogan">您的聲音，我們的行動！</h5>
+        <p class="public_feedback_text">親愛的鄉親，每一位市民的意見都是我們社區前進的原動力。無論大小事，我都誠摯希望聽到您的建議。分享您的想法，一同為我們的未來打造更美好！</p>
+        <div class="form_content">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="nameInput" placeholder="">
+            <label for="nameInput">您的姓名</label>
+          </div>
+          <div class="form-floating">
+            <input type="email" class="form-control" id="emailInput" placeholder="">
+            <label for="emailInput">您的Email</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="phoneInput" placeholder="">
+            <label for="phoneInput">您的手機</label>
+          </div>
+          <div class="form-floating">
+            <textarea class="form-control" id="messageInput" placeholder=""></textarea>
+            <label for="messageInput">您的建言</label>
+          </div>
+        </div>  
+        <button type="button" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <img src="./assets/img/submit.png" alt="送出意見的按鍵">
+        </button>
+        <div class="modal fade modal_set" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fs-5" id="staticBackdropLabel">感謝您抽出寶貴的時間給予我們寶貴的建議。</h5>
+              </div>
+              <div class="modal-body">
+                <p>我們非常重視您的意見，它是我們不斷改進和提升服務的動力。您提出的建議已經轉交給相關部門進行評估，我們將努力在未來的服務中加以考慮和實施。</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  <img src="./assets/img/Property 1=Back, Size=Small.png" alt="返回按鍵">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </section>
+    <div class="cat_img">
+      <img src="./assets/img/Mokker (6) 1.png" alt="貓咪照片"> 
+    </div>
   </main>
 
   <footer>
-
+    <div class="menu">
+      <span class="menu_title">Menu</span>
+      <div class="menu_link">
+        <a class="menu_link_item">首頁</a>
+        <a class="menu_link_item">最新活動</a>
+        <a class="menu_link_item">民眾服務信箱</a>
+        <a class="menu_link_item">候選人主張</a>
+        <a class="menu_link_item">政策議題</a>
+        <a class="menu_link_item">小額捐款</a>
+      </div>
+    </div>
+    <div class="office_information">
+      <span class="office_information_title">Office information</span>
+      <address>
+        <span class="address">地址：<a href="https://www.google.com.tw/maps/place/台北市喵星區毛茸茸大道88號喵喵大樓3樓">台北市喵星區毛茸茸大道88號喵喵大樓3樓</a></span>
+        <span class="phone">電話：<a href="tel:(02)888-5678">(02)888-5678</a></span>
+        <span class="mail">郵件：<a href="mailto:meowoffice@linmeow.tw">meowoffice@linmeow.tw</a></span>
+      </address>
+    </div>
+    <span class="copyright">版權聲明：&copy; 2023 喵立翰（Miao Li-Han） 版權所有。</span>
   </footer>
 </template>
 
@@ -311,7 +375,7 @@ main{
   }
 }
 
-.cover_container,.public_feedback{
+.cover_container{
   margin: 40px 15px 0px;
 }
 
@@ -373,7 +437,6 @@ h3{
     &-body{
       text-align: left;
       padding: 15px;
-
     }
 
     &-text{
@@ -382,6 +445,7 @@ h3{
       overflow: hidden;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
+      color:$dark2;
     }
   }
 }
@@ -461,6 +525,151 @@ h3{
   }
 }
 
+.public_feedback_container{
+  padding: 20px 15px 130px;
+  text-align: center;
+  .public_feedback_text{
+    margin-bottom: 15px;
+    font-size: $font_normal;
+  }
 
+  .form_content{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+  }
+
+  form-control,label{
+    padding: 10px;
+    font-size: $font_normal;
+    color:#C1C1C1;
+  }
+
+  input,textarea{
+    border: 1px solid $light2;
+  }
+
+  input:focus{
+    box-shadow: none;
+  }
+
+  textarea.form-control{
+    height: 80px;
+  }
+
+  .public_feedback_submit{
+    border: none;
+    background-color: #E3E3E3;
+
+    &:active{
+      background-color: #E3E3E3;
+    }
+  }
+
+  .modal_set{
+    text-align: center;
+    .modal-content{
+      display: flex;
+      padding:30px;
+      border-radius: 80px;
+    }
+    .modal-header{
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    .modal-body{
+      padding: 0;
+      margin-bottom: 50px;
+    }
+    .modal-footer{
+      display: block;
+      padding: 0;
+    }
+
+    .btn-secondary{
+      margin: 0;
+      padding:0;
+      border: none;
+      background-color: $white;
+      text-align: center;
+    }
+  }
+}
+
+.cat_img{
+  position: absolute;
+  // top: -120.864px;
+  top:3640px;
+  // top:3652px;
+  left: 18px;
+
+  img{
+    width: 355px;
+  }
+}
+
+footer{
+  padding:30px 21px 15px;
+}
+.menu{
+  margin-bottom: 60px;
+  text-align: center;
+
+  &_title{
+    display:block;
+    margin-bottom: 10px;
+    font-size: $font_small;
+    color:$secondary_orange;
+  }
+
+  &_link{
+    columns: 2;
+
+    a{
+      display: block;
+      margin-bottom: 5px;
+      font-size: $font_normal;
+      color:$light5;
+
+      &:nth-child(3n){
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.office_information{
+  margin-bottom: 20px;
+  &_title{
+    display:block;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: $font_small;
+    color:$secondary_orange;
+  }
+
+  address{
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+
+    span{
+      display:block;
+      color:$light5;
+    }
+
+    .mail a{
+      text-decoration:underline;
+    }
+  }
+}
+
+.copyright{
+  display:block;
+  text-align: center;
+  font-size: $font_small;
+  color:$dark5;
+}
 
 </style>

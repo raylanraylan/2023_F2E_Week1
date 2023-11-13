@@ -38,3 +38,7 @@
   width: 12px;
   height: 12px;
 }
+
+.swiper-pagination-bullet-active{
+  background-color:#4527A0;
+}
