@@ -1,35 +1,42 @@
 <script setup>
-
 </script>
 <script>
-  // Import Swiper Vue.js components
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import { defineComponent } from 'vue';
 
-  // Import Swiper styles
-  import 'swiper/css';
+export default defineComponent( {
+  components: {
+    Splide,
+    SplideSlide,
+  },
 
-  import 'swiper/css/pagination';
+  setup() {
+    const options = {
+      type   : 'loop',
+      padding: '3rem',
+      gap: '20px',
+      drag: 'true',
+      updateOnMove: 'true',
+    };
 
-  import '@/assets/swiper.css';
+    return { options };
+  },
+} );
+// Default theme
+import '@splidejs/vue-splide/css';
 
-  // import required modules
-  import { Pagination } from 'swiper/modules';
+// or other themes
+import '@splidejs/vue-splide/css/skyblue';
+// import '@splidejs/vue-splide/css/sea-green';
 
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      return {
-        modules: [Pagination],
-      };
-    },
-  };
+// or only core styles
+// import '@splidejs/vue-splide/css/core';
+
+
 </script>
 
 <template>
-  <header>
+  <header class="header">
     <nav class="navbar bg-body-tertiary fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Offcanvas navbar</a>
@@ -44,29 +51,21 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <h5><a class="nav-link active" aria-current="page" href="#">Home</a></h5>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <h5><a class="nav-link" href="#">Link</a></h5>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+              <li class="nav-item">
+                <h5><a class="nav-link" href="#">Link</a></h5>
+              </li>
+              <li class="nav-item">
+                <h5><a class="nav-link" href="#">Link</a></h5>
+              </li>
+              <li class="nav-item">
+                <h5><a class="nav-link" href="#"><img></a></h5>
               </li>
             </ul>
-            <form class="d-flex mt-3" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
           </div>
         </div>
       </div>
@@ -111,18 +110,10 @@
       <h3>
         <img src="./assets/img/news.png" alt="最新消息">
       </h3>
-      <swiper
-      :slidesPerView="'auto'"
-      :centeredSlides="true"
-      :loop="true"
-      :spaceBetween="10"
-      :pagination="{
-        clickable: true,
-      }"
-      :modules="modules"
-      class="mySwiper">
-        <swiper-slide>
-          <div class="card" style="width: 20rem;">
+      <Splide :options="options" aria-label="My Favorite Images" >
+
+        <SplideSlide>
+          <div class="card">
             <time class="card_date">
               <span class="day">26</span>
               <span class="month">DEC.</span>
@@ -135,9 +126,9 @@
               <p class="card-text">炎炎夏日的周六，我走進了台北寵物論壇，帶著一副貓耳髮箍，決定要全力宣傳「貓咪至上」的理念！我相信，我們的都市中，每一隻貓咪都應該有自己的 VIP 休憩空間。</p>
             </div>
           </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="card" style="width: 20rem;">
+        </SplideSlide>
+        <SplideSlide>
+          <div class="card">
             <time class="card_date">
               <span class="day">26</span>
               <span class="month">DEC.</span>
@@ -150,9 +141,9 @@
               <p class="card-text">炎炎夏日的周六，我走進了台北寵物論壇，帶著一副貓耳髮箍，決定要全力宣傳「貓咪至上」的理念！我相信，我們的都市中，每一隻貓咪都應該有自己的 VIP 休憩空間。</p>
             </div>
           </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="card" style="width: 20rem;">
+        </SplideSlide>
+        <SplideSlide>
+          <div class="card">
             <time class="card_date">
               <span class="day">26</span>
               <span class="month">DEC.</span>
@@ -165,8 +156,9 @@
               <p class="card-text">炎炎夏日的周六，我走進了台北寵物論壇，帶著一副貓耳髮箍，決定要全力宣傳「貓咪至上」的理念！我相信，我們的都市中，每一隻貓咪都應該有自己的 VIP 休憩空間。</p>
             </div>
           </div>
-        </swiper-slide>
-      </swiper>
+        </SplideSlide>
+      </Splide>
+
     </section>
     <section class="policy">
       <h3>
@@ -306,13 +298,19 @@
   </footer>
 </template>
 
-<style lang="scss" scoped>  
+<style lang="scss" scoped>
+
 //nav
-nav{
-  margin: 0 5px 0;
-}
-.offcanvas{
-  transition:none;
+.header{
+  nav{
+    margin: 0 5px 0;
+  }
+  .offcanvas{
+    transition:none;
+    background-color: $main_blue;
+    text-align: right;
+    color:$white;
+  }
 }
 
 main{
@@ -396,6 +394,46 @@ h3{
 
 .news{
   padding: 0 0 30px;
+
+  .splide__slide{
+    display:flex;
+    align-items:center;
+  }
+
+  .splide__slide>.card{
+    &::after{
+      content:"";
+      position:absolute;
+      width:100%;
+      height:100%;
+      background-color:rgba(255,255,255,.5);
+    }
+
+    .card-img{
+      height:188px;
+    }
+
+    .card-body{
+      height:168px;
+    }
+
+  }
+
+  .is-active>.card {
+    &::after{
+      background-color:rgba(255,255,255,0);
+    }
+
+    .card-img{
+      height:200px;
+    }
+  }
+
+  .splide__slide img{
+    height: 200px;
+    object-fit:cover;
+  }
+
   .card{
     position: relative;
     border-radius: 8px;
@@ -428,10 +466,6 @@ h3{
     &-title{
       margin-bottom: 10px;
       color:$dark1;
-    }
-
-    &-img{
-      height: 200px;
     }
 
     &-body{
