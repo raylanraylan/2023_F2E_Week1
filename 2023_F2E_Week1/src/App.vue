@@ -1,8 +1,9 @@
 <script setup>
+
 </script>
 <script>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { defineComponent } from 'vue';
+import { defineComponent,ref,onMounted } from 'vue';
 
 export default defineComponent( {
   components: {
@@ -15,55 +16,61 @@ export default defineComponent( {
       type   : 'loop',
       padding: '3rem',
       gap: '20px',
-      drag: 'true',
-      updateOnMove: 'true',
+      drag: true,
+      arrows: false,
+      updateOnMove: true,
     };
 
     return { options };
   },
-} );
+  },
+);
 // Default theme
-import '@splidejs/vue-splide/css';
+// import '@splidejs/vue-splide/css';
 
 // or other themes
 import '@splidejs/vue-splide/css/skyblue';
 // import '@splidejs/vue-splide/css/sea-green';
-
+import './assets/splide.css';
 // or only core styles
 // import '@splidejs/vue-splide/css/core';
-
-
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" id="index">
     <nav class="navbar bg-body-tertiary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Offcanvas navbar</a>
+        <a class="navbar-brand" href="#">
+          <img src="./assets/img/name_blue.png" alt="候選人號碼" class="candidate_name">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <img src="./assets/img/menu (1) 1.png">
         </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas offcanvas-end" ref="offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
-            <h1 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h1 class="offcanvas-title" id="offcanvasNavbarLabel">
+              <img src="./assets/img/name_white.png">
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+              <img src="./assets/img/close 1.png" class="close_img">
+            </button>
           </div>
           <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <ul class="navbar-nav justify-content-end flex-grow-1">
               <li class="nav-item">
-                <h5><a class="nav-link active" aria-current="page" href="#">Home</a></h5>
+                <h5><a class="nav-link active" aria-current="page" href="#cover" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">候選人主張</a></h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" href="#">Link</a></h5>
+                <h5><a class="nav-link" href="#news" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">最新活動</a></h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" href="#">Link</a></h5>
+                <h5><a class="nav-link" href="#policy" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">政策議題</a></h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" href="#">Link</a></h5>
+                <h5><a class="nav-link" href="#public_feedback" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">民眾服務信箱</a></h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" href="#"><img></a></h5>
+                <h5><a class="nav-link" href="#donation" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"><img src="./assets/img/donate.png"></a></h5>
               </li>
             </ul>
           </div>
@@ -94,7 +101,7 @@ import '@splidejs/vue-splide/css/skyblue';
             <div class="miao_Li-Han_text_img">
               <img src="./assets/img/Miao Li-Han.png">
             </div>
-            <div class="cover_text">
+            <div class="cover_text" id="cover">
               <h5>
                 護航台灣幸福經濟  
                 從照顧每一隻貓咪開始
@@ -106,12 +113,11 @@ import '@splidejs/vue-splide/css/skyblue';
         </div>
       </div>
     </section>
-    <section class="news">
+    <section class="news" id="news">
       <h3>
         <img src="./assets/img/news.png" alt="最新消息">
       </h3>
-      <Splide :options="options" aria-label="My Favorite Images" >
-
+      <Splide :options="options" aria-label="news content">
         <SplideSlide>
           <div class="card">
             <time class="card_date">
@@ -160,7 +166,7 @@ import '@splidejs/vue-splide/css/skyblue';
       </Splide>
 
     </section>
-    <section class="policy">
+    <section class="policy" id="policy">
       <h3>
         <img src="./assets/img/policy.png" alt="政策議題">
       </h3>
@@ -206,25 +212,75 @@ import '@splidejs/vue-splide/css/skyblue';
         </div>
       </article>
     </section>
-    <section class="donate">
-      <div class="donate_container">
-        <div class="donate_title_text_img">
-          <img src="./assets/img/small donation.png" alt="小額捐款">
-        </div>
-        <p class="donate_text">您的小筆捐款，
-          是每隻毛孩未來的大大動力！</p>
-        <div class="donate_totalAmount">
-          <div class="donate_totalAmount_text_img">
-            <img src="./assets/img/total amount.png" alt="累積總金額">
+    <section class="donation" id="donation">
+      <div class="donation_container">
+        <div class="donation_description">
+          <div class="donation_title_text_img">
+            <img src="./assets/img/small donation.png" alt="小額捐款">
           </div>
-          <span class="amount">NT$<span class="number">987,655,873</span></span>
+          <p class="donation_text">您的小筆捐款，
+            是每隻毛孩未來的大大動力！</p>
+          <div class="donation_totalAmount">
+            <div class="donation_totalAmount_text_img">
+              <img src="./assets/img/total amount.png" alt="累積總金額">
+            </div>
+            <span class="total_amount">NT$<span class="number">987,655,873</span></span>
+          </div>
+          <button type="button" class="donation_button">
+            <img src="./assets/img/Btn.png" alt="前往捐款的按鈕">
+          </button>
         </div>
-        <button type="button" class="donate_button">
-          <img src="./assets/img/Btn.png" alt="前往捐款的按鈕">
-        </button>
-      </div>
+        <form class="donation_content">
+          <h4 class="donation_plan_title">選擇捐款方案</h4>
+          <div class="donation_plan">
+            <div class="plan">
+              <h6>喵星人之友</h6>
+              <span class="amount">NT$600</span>
+              <span class="sponsors_number">已有 9957 人贊助</span>
+            </div>
+            <div class="plan">
+              <h6>喵星人之友</h6>
+              <span class="amount">NT$600</span>
+              <span class="sponsors_number">已有 9957 人贊助</span>
+            </div>
+            <div class="plan">
+              <h6>喵星人之友</h6>
+              <span class="amount">NT$600</span>
+              <span class="sponsors_number">已有 9957 人贊助</span>
+            </div>
+            <div class="plan">
+              <h6>自訂捐款金額</h6>
+              <input class="input_amount" type="text" placeholder="請輸入捐款金額">
+            </div>
+          </div>
+          <div class="button_container">
+            <button class="back"><img src="./assets/img/Property 1=Back, Size=Small.png"></button>
+            <button class="submit" type="button" data-bs-toggle="modal" data-bs-target="#donationSubmit"><img src="./assets/img/Property 1=Default, Size=Small.png"></button>
+            <div class="modal fade" id="donationSubmit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title fs-5" id="staticBackdropLabel">感謝您成為喵星大使</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="amount_text">
+                      <img src="./assets/img/donation.png">
+                    </div>
+                    <span class="amount">NT$<span>6,000</span></span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#staticBackdrop">
+                      <img src="./assets/img/Property 1=Back, Size=Small.png" alt="返回按鍵">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>  
     </section>
-    <section class="public_feedback">
+    <section class="public_feedback" id="public_feedback">
       <form class="public_feedback_container">
         <h3 class="public_feedback_title_text_img"><img src="./assets/img/feedback.png"></h3>
         <h5 class="public_feedback_slogan">您的聲音，我們的行動！</h5>
@@ -247,10 +303,10 @@ import '@splidejs/vue-splide/css/skyblue';
             <label for="messageInput">您的建言</label>
           </div>
         </div>  
-        <button type="button" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#feedbackSubmit">
           <img src="./assets/img/submit.png" alt="送出意見的按鍵">
         </button>
-        <div class="modal fade modal_set" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade modal_set" id="feedbackSubmit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -278,12 +334,12 @@ import '@splidejs/vue-splide/css/skyblue';
     <div class="menu">
       <span class="menu_title">Menu</span>
       <div class="menu_link">
-        <a class="menu_link_item">首頁</a>
-        <a class="menu_link_item">最新活動</a>
-        <a class="menu_link_item">民眾服務信箱</a>
-        <a class="menu_link_item">候選人主張</a>
-        <a class="menu_link_item">政策議題</a>
-        <a class="menu_link_item">小額捐款</a>
+        <a href="#index" class="menu_link_item">首頁</a>
+        <a href="#news" class="menu_link_item">最新活動</a>
+        <a href="#public_feedback" class="menu_link_item">民眾服務信箱</a>
+        <a href="#cover" class="menu_link_item">候選人主張</a>
+        <a href="#policy" class="menu_link_item">政策議題</a>
+        <a href="#donation" class="menu_link_item">小額捐款</a>
       </div>
     </div>
     <div class="office_information">
@@ -304,17 +360,70 @@ import '@splidejs/vue-splide/css/skyblue';
 .header{
   nav{
     margin: 0 5px 0;
+    padding:14px 17px 14px 20px;
+  }
+  .container-fluid{
+    padding:0;
   }
   .offcanvas{
+    padding: 17px 20px;
     transition:none;
     background-color: $main_blue;
     text-align: right;
     color:$white;
   }
+  .offcanvas-header{
+    padding: 0;
+    margin-bottom: 27px;
+  }
+
+  h1{
+    line-height: 0;
+  }
+
+  .btn-close{
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    padding:0px;
+    margin:0px;
+    background:none;
+    opacity: 1;
+  }
+
+  .navbar-brand{
+    display: flex;
+    align-items: center;
+    gap:3px;
+  }
+
+  .navbar-toggler{
+    padding:0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .offcanvas-body{
+    padding: 0;
+    
+    .navbar-nav{
+      display: flex;
+      gap:30px;
+    }
+
+    h5{
+      margin-bottom: 0;
+    }
+
+    a{
+      padding: 0;
+      color:$white;
+    }
+  }
 }
 
 main{
-  margin: 55px 5px 0;
+  margin: 65px 5px 0;
 }
 .cover,.news,.public_feedback{
   background-color: #E3E3E3;
@@ -374,12 +483,9 @@ main{
 }
 
 .cover_container{
-  margin: 40px 15px 0px;
-}
-
-.cover_container{
   position: relative;
   padding: 20px 0 35px;
+  margin: 0 15px;
 }
 
 .election_text_img{
@@ -395,11 +501,6 @@ h3{
 .news{
   padding: 0 0 30px;
 
-  .splide__slide{
-    display:flex;
-    align-items:center;
-  }
-
   .splide__slide>.card{
     &::after{
       content:"";
@@ -408,7 +509,6 @@ h3{
       height:100%;
       background-color:rgba(255,255,255,.5);
     }
-
     .card-img{
       height:188px;
     }
@@ -418,7 +518,6 @@ h3{
     }
 
   }
-
   .is-active>.card {
     &::after{
       background-color:rgba(255,255,255,0);
@@ -471,6 +570,18 @@ h3{
     &-body{
       text-align: left;
       padding: 15px;
+      position: relative;
+
+      &::after{
+        content: "";
+        position: absolute;
+        width: 27.528px;
+        height: 15.64px;
+        top:-15.64px;
+        left:46%;
+        clip-path: polygon(50% 0 ,100% 100%,0 100%);
+        background-color: $white;
+      }
     }
 
     &-text{
@@ -527,14 +638,11 @@ h3{
   }
 }
 
-.donate{
+.donation{
   padding:45px 16.5px;
   background: no-repeat center/cover url('./assets/img/female-hand-with-cat-paw-kitten-s-paw-woman-finger-contrast-close-up 1.png');
 
   &_container{
-    display: flex;
-    flex-direction: column;
-    gap:20px;
     padding: 62px 30px;
     background-color: $light5;
     border-radius: 80px;
@@ -542,20 +650,136 @@ h3{
     text-align: center;
   }
 
-  &_text{
-    word-break: keep-all;
+  .donation_description {
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+
+    .donation_text{
+      word-break: keep-all;
+    }
+
+    .total_amount{
+      font-size: 30px;
+      font-weight: 700;
+      -webkit-text-stroke:2px $main_blue;
+      color:$main_blue;
+    }
+
+    .donation_button{
+      border: none;
+      background-color:$light5;
+    }
   }
-  .amount{
-    font-size: 30px;
-    font-weight: 700;
-    -webkit-text-stroke:2px $main_blue;
-    // text-shadow: 1px 1px 0 $main_blue;
-    color:$main_blue;
+  
+  .donation_content{
+    display: none;
   }
 
-  &_button{
-    border: none;
-    background-color: white;
+  h4{
+    margin-bottom:10px;
+  }
+  .donation_plan{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+    margin-bottom:10px;
+  
+    .plan{
+      display: flex;
+      flex-direction: column;
+      gap:5px;
+      padding: 15px 3px;
+      border:solid 2px $light1;
+      border-radius:8px;
+      background-color: $white;
+    }
+
+    h6{
+      margin-bottom: 0;
+    }
+    .amount{
+      font-size: $title_s;
+      font-weight: 700;
+      -webkit-text-stroke:2px $main_blue;
+      color:$main_blue;
+    }
+
+    .sponsors_number{
+      font-size: $font_small;
+      color:$dark5;
+    }
+
+    input{
+      align-self: center;
+      padding:12px 6px;
+      border: 1px solid $light2;
+      border-radius: 8px;
+      width:120px;
+      height: 50px;
+      
+      font-size: $font_normal;
+      text-align: center;
+      color:#C1C1C1;
+    }
+  }
+
+  .button_container{
+    display:flex;
+    gap: 10px;
+
+    button{
+      border:0;
+      background-color: $light5;
+    }
+    
+    .back>img,.submit>img{
+      margin:0 auto;
+      display:block;
+      width:93%;
+    }
+    .modal{
+      .modal-content{
+        display: flex;
+        padding:60px 67px;
+        border-radius: 80px;
+      }
+      .modal-header{
+        padding: 0;
+        margin-bottom: 10px;
+        border:0;
+
+        h4{
+          width:100%;
+          text-align:center;
+        }
+      }
+
+      .modal-body{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin-bottom: 50px;
+
+        .amount{
+          font-size: 30px;
+          font-weight: 700;
+          -webkit-text-stroke:2px $main_blue;
+          color:$main_blue;
+        }
+      }
+      .modal-footer{
+        display: block;
+        padding: 0;
+        border:0;
+
+        button{
+          background-color: $white;
+        }
+      }
+
+    }
   }
 }
 
@@ -610,6 +834,12 @@ h3{
     .modal-header{
       padding: 0;
       margin-bottom: 10px;
+      border:0;
+
+      h5{
+        width:100%;
+        text-align:center;
+      }
     }
 
     .modal-body{
@@ -619,6 +849,7 @@ h3{
     .modal-footer{
       display: block;
       padding: 0;
+      border:0;
     }
 
     .btn-secondary{
@@ -634,7 +865,7 @@ h3{
 .cat_img{
   position: absolute;
   // top: -120.864px;
-  top:3640px;
+  top:3660px;
   // top:3652px;
   left: 18px;
 
