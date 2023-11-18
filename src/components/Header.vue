@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+
+const activeLink = ref(null);
+
+const changeBorder = (event)=>{
+  activeLink.value = event.target.dataset.name
+}
+</script>
 <template>
   <header class="header" id="index" data-aos="fade-up">
     <nav class="navbar bg-body-tertiary fixed-top navbar-expand-xxl">
@@ -21,19 +29,19 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1">
               <li class="nav-item">
-                <h5><a class="nav-link active" aria-current="page" href="#cover">候選人主張</a></h5>
+                <h5><a class="nav-link" data-name="cover" :class="{active:activeLink==='cover'}" aria-current="page" href="#cover" @click="changeBorder">候選人主張</a></h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" href="#news">最新活動</a></h5>
+                <h5><a class="nav-link" data-name="news" :class="{active:activeLink==='news'}" href="#news" @click="changeBorder">最新活動</a></h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" href="#policy">政策議題</a></h5>
+                <h5><a class="nav-link" data-name="policy" :class="{active:activeLink==='policy'}" href="#policy" @click="changeBorder">政策議題</a></h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" href="#public_feedback">民眾服務信箱</a></h5>
+                <h5><a class="nav-link" data-name="public_feedback" :class="{active:activeLink==='public_feedback'}" href="#public_feedback" @click="changeBorder">民眾服務信箱</a></h5>
               </li>
               <li class="nav-item nav-item-phone">
-                <h5><a class="nav-link" href="#donation"></a></h5>
+                <h5><a class="nav-link" href="#donation" @click="changeBorder"></a></h5>
               </li>
               <li class="nav-item nav-item-pc">
                 <h5>
@@ -178,9 +186,9 @@
       }
     }
 
-    // a.active{
-    //   border-bottom:3px solid $main_blue
-    // }
+    a.active{
+      border-bottom:3px solid $main_blue
+    }
   }
 }
 </style>
