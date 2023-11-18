@@ -1,4 +1,17 @@
 <script setup>
+import { onMounted } from 'vue';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import counterUp from 'counterup2';
+
+AOS.init();
+onMounted(()=>{
+  const el = document.querySelector('.counter')
+  counterUp( el, {
+    duration: 1000,
+    delay: 16,
+  } )
+})
 
 </script>
 <script>
@@ -23,89 +36,43 @@ export default defineComponent( {
 
     return { options };
   },
-  },
-);
+});
+
 
 import '@splidejs/vue-splide/css/skyblue';
-import './assets/splide.css';
+import '../assets/splide.css';
+
+
 </script>
-
 <template>
-  <header class="header" id="index">
-    <nav class="navbar bg-body-tertiary fixed-top navbar-expand-xxl">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#index">
-          <img class="candidate_name" src="./assets/img/Logo (2).png" alt="候選人名字">
-        </a>
-        <button class="navbar-toggler" type="button" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
-          <img src="./assets/img/menu (1) 1.png" alt="連結選單按鍵">
-        </button>
-        <div class="offcanvas offcanvas-end" ref="offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h1 class="offcanvas-title" id="offcanvasNavbarLabel">
-              <img src="./assets/img/name_white.png" alt="候選人名字">
-            </h1>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-              <img class="close_img" src="./assets/img/close 1.png" alt="關閉連結選單">
-            </button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1">
-              <li class="nav-item">
-                <h5><a class="nav-link active" aria-current="page" href="#cover">候選人主張</a></h5>
-              </li>
-              <li class="nav-item">
-                <h5><a class="nav-link" href="#news">最新活動</a></h5>
-              </li>
-              <li class="nav-item">
-                <h5><a class="nav-link" href="#policy">政策議題</a></h5>
-              </li>
-              <li class="nav-item">
-                <h5><a class="nav-link" href="#public_feedback">民眾服務信箱</a></h5>
-              </li>
-              <li class="nav-item nav-item-phone">
-                <h5><a class="nav-link" href="#donation"></a></h5>
-              </li>
-              <li class="nav-item nav-item-pc">
-                <h5>
-                  <a class="nav-link" href="#donation"></a>
-                </h5>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
   <main>
-    <section class="cover">
+    <section class="cover" data-aos="fade-up">
       <div class="cover_container">
         <h2 class="cover_slogan_phone">
           <div class="election_text_img">
-            <img src="./assets/img/2023_THE_F2E_legislative election.png" alt="宣傳標語：2023 the f2e 立委競選">
+            <img src="../assets/img/2023_THE_F2E_legislative election.png" alt="宣傳標語：2023 the f2e 立委競選">
           </div>
           <div class="cat_eye_text_img">
-            <img src="./assets/img/Seeing Taiwan through the eyes of cats.png" alt="宣傳標語：從喵的眼中看見台灣">
+            <img src="../assets/img/Seeing Taiwan through the eyes of cats.png" alt="宣傳標語：從喵的眼中看見台灣">
           </div>
         </h2>
         <h2 class="cover_slogan_pc">
           <div class="election_text_img">
-            <img src="./assets/img/2023_THE_F2E_legislative election_PC.png" alt="宣傳標語：2023 the f2e 立委競選">
+            <img src="../assets/img/2023_THE_F2E_legislative election_PC.png" alt="宣傳標語：2023 the f2e 立委競選">
           </div>
           <div class="cat_eye_text_img">
-            <img src="./assets/img/Seeing Taiwan through the eyes of cats_PC.png" alt="宣傳標語：從喵的眼中看見台灣">
+            <img src="../assets/img/Seeing Taiwan through the eyes of cats_PC.png" alt="宣傳標語：從喵的眼中看見台灣">
           </div>
         </h2>
         <div class="candidate">
-            <img src="./assets/img/candidate.png" alt="候選人照片">
+            <img src="../assets/img/candidate.png" alt="候選人照片">
           </div>
         <div class="cover_content">
           <div class="keep_it_possible_phone">
-            <img src="./assets/img/KEEP IT POSSIBLE.png" alt="宣傳標語：keep it possible">
+            <img src="../assets/img/KEEP IT POSSIBLE.png" alt="宣傳標語：keep it possible">
           </div>
           <div class="keep_it_possible_pc">
-            <img src="./assets/img/Frame 1.png" alt="宣傳標語：keep it possible">
+            <img src="../assets/img/Frame 1.png" alt="宣傳標語：keep it possible">
           </div>
           <div class="cover_text_pc" id="cover">
             <h5>
@@ -117,10 +84,13 @@ import './assets/splide.css';
           </div>
           <div>
             <div class="miao_Li-Han_text_img_phone">
-              <img src="./assets/img/Miao Li-Han.png">
+              <img src="../assets/img/Miao Li-Han.png">
             </div>
             <div class="miao_Li-Han_text_img_pc">
-              <img src="./assets/img/Miao Li-Han (1).png">
+              <img src="../assets/img/Miao Li-Han (1).png">
+            </div>
+            <div class="miao_Li-Han_text_straight_img">
+              <img src="../assets/img/Miao Li-Han_straight.png">
             </div>
             <div class="cover_text_phone" id="cover">
               <h5>
@@ -135,12 +105,12 @@ import './assets/splide.css';
     
       </div>
     </section>
-    <section class="news" id="news">
+    <section class="news" id="news" data-aos="fade-up">
       <div class="news_title_text_img_phone">
-        <img src="./assets/img/news.png" alt="最新消息">
+        <img src="../assets/img/news.png" alt="最新消息">
       </div>
       <div class="news_title_text_img_pc">
-        <img src="./assets/img/news_pc.png" alt="最新消息">
+        <img src="../assets/img/news_pc.png" alt="最新消息">
       </div>
       <Splide :options="options" aria-label="news content">
         <SplideSlide>
@@ -150,7 +120,7 @@ import './assets/splide.css';
               <span class="month">DEC.</span>
             </time>
             <div class="card-img">
-              <img src="./assets/img/activity01.png" class="card-img-top" alt="">
+              <img src="../assets/img/activity01.png" class="card-img-top" alt="">
             </div>
             <div class="card-body">
               <h5 class="card-title">參與台北寵物論壇 爭取貓咪友善環境</h5>
@@ -165,7 +135,7 @@ import './assets/splide.css';
               <span class="month">DEC.</span>
             </time>
             <div class="card-img">
-              <img src="./assets/img/activity01.png" class="card-img-top" alt="">
+              <img src="../assets/img/activity01.png" class="card-img-top" alt="">
             </div>
             <div class="card-body">
               <h5 class="card-title">參與台北寵物論壇 爭取貓咪友善環境</h5>
@@ -180,7 +150,7 @@ import './assets/splide.css';
               <span class="month">DEC.</span>
             </time>
             <div class="card-img">
-              <img src="./assets/img/activity01.png" class="card-img-top" alt="">
+              <img src="../assets/img/activity01.png" class="card-img-top" alt="">
             </div>
             <div class="card-body">
               <h5 class="card-title">參與台北寵物論壇 爭取貓咪友善環境</h5>
@@ -198,7 +168,7 @@ import './assets/splide.css';
               <span class="month">DEC.</span>
             </time>
             <div class="card-img">
-              <img src="./assets/img/activity01.png" class="card-img-top" alt="活動照片">
+              <img src="../assets/img/activity01.png" class="card-img-top" alt="活動照片">
             </div>
             <div class="card-body">
               <h5 class="card-title">參與台北寵物論壇 爭取貓咪友善環境</h5>
@@ -208,7 +178,7 @@ import './assets/splide.css';
         </div>
         <div class="card_old_news">
           <div class="card">
-            <img src="./assets/img/activity01.png" class="card-img-top" alt="活動照片">
+            <img src="../assets/img/activity01.png" class="card-img-top" alt="活動照片">
             <div class="card-body">
               <time class="card_date">
                 <span class="date">2023.12.26</span>
@@ -218,21 +188,24 @@ import './assets/splide.css';
             </div>
           </div>
           <div class="card">
-            <img src="./assets/img/activity01.png" class="card-img-top" alt="活動照片">
+            <img src="../assets/img/activity01.png" class="card-img-top" alt="活動照片">
             <div class="card-body">
+              <time class="card_date">
+                <span class="date">2023.12.26</span>
+              </time>
               <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
             </div>
           </div>
         </div>  
       </div>
     </section>
-    <section class="policy" id="policy">
+    <section class="policy" id="policy" data-aos="fade-up">
       <div class="policy_title_text_img_small">
-        <img src="./assets/img/policy.png" alt="政策議題">
+        <img src="../assets/img/policy.png" alt="政策議題">
       </div>
       <div class="policy_title_text_img_large">
-        <img src="./assets/img/policy_large.png" alt="政策議題">
+        <img src="../assets/img/policy_large.png" alt="政策議題">
       </div>
       <article class="policy_content">
         <div class="card">
@@ -276,31 +249,31 @@ import './assets/splide.css';
         </div>
       </article>
     </section>
-    <section class="donation" id="donation">
+    <section class="donation" id="donation" data-aos="fade-up">
       <div class="donation_container">
         <div class="donation_description">
           <div class="donation_title_text_img_small">
-            <img src="./assets/img/small donation.png" alt="小額捐款">
+            <img src="../assets/img/small donation.png" alt="小額捐款">
           </div>
           <div class="donation_title_text_img_large">
-            <img src="./assets/img/small donation_large.png" alt="小額捐款">
+            <img src="../assets/img/small donation_large.png" alt="小額捐款">
           </div>
           <p class="donation_text">您的小筆捐款，
             是每隻毛孩未來的大大動力！</p>
           <div class="donation_totalAmount">
             <div class="donation_totalAmount_text_img_small">
-              <img src="./assets/img/total amount.png" alt="累積總金額">
+              <img src="../assets/img/total amount.png" alt="累積總金額">
             </div>
             <div class="donation_totalAmount_text_img_large">
-              <img src="./assets/img/total amount_large.png" alt="累積總金額">
+              <img src="../assets/img/total amount_large.png" alt="累積總金額">
             </div>
-            <span class="total_amount">NT$<span class="number">987,655,873</span></span>
+            <div class="counter"><span class="total_amount">NT$<span class="number">987,655,873</span></span></div>
           </div>
           <button type="button" class="donation_button_small">
-            <img src="./assets/img/Btn.png" alt="前往捐款">
+            <img src="../assets/img/Btn.png" alt="前往捐款">
           </button>
           <button type="button" class="donation_button_large">
-            <img src="./assets/img/Btn (1).png" alt="前往捐款">
+            <img src="../assets/img/Btn (1).png" alt="前往捐款">
           </button>
         </div>
         <form class="donation_content">
@@ -338,7 +311,7 @@ import './assets/splide.css';
                 </div>
                 <div class="modal-body">
                   <div class="amount_text">
-                    <img src="./assets/img/donation.png" alt="捐款金額文字">
+                    <img src="../assets/img/donation.png" alt="捐款金額文字">
                   </div>
                   <span class="amount">NT$<span>6,000</span></span>
                 </div>
@@ -351,11 +324,11 @@ import './assets/splide.css';
         </form>
       </div>  
     </section>
-    <section class="public_feedback" id="public_feedback">
+    <section class="public_feedback" id="public_feedback" data-aos="fade-up">
       <form class="public_feedback_container">
         <div class="public_feedback_description">
-          <div class="public_feedback_title_text_img_small"><img src="./assets/img/feedback.png"></div>
-          <div class="public_feedback_title_text_img_large"><img src="./assets/img/feedback_large.png"></div>
+          <div class="public_feedback_title_text_img_small"><img src="../assets/img/feedback.png"></div>
+          <div class="public_feedback_title_text_img_large"><img src="../assets/img/feedback_large.png"></div>
           <h5 class="public_feedback_slogan">您的聲音，我們的行動！</h5>
           <p class="public_feedback_text">親愛的鄉親，每一位市民的意見都是我們社區前進的原動力。無論大小事，我都誠摯希望聽到您的建議。分享您的想法，一同為我們的未來打造更美好！</p>
         </div>
@@ -377,7 +350,7 @@ import './assets/splide.css';
             <label for="messageInput">您的建言</label>
           </div>
           <button type="button" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#feedbackSubmit">
-            <img src="./assets/img/submit.png" alt="送出意見的按鍵">
+            <img src="../assets/img/submit.png" alt="送出意見的按鍵">
           </button>
         </div>  
         <div class="modal fade modal_set" id="feedbackSubmit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -398,182 +371,14 @@ import './assets/splide.css';
       </form>
     </section>
   </main>
-  
-  <footer>
-    <div class="cat_img">
-      <img src="./assets/img/Mokker (6) 1.png" alt="貓咪照片"> 
-    </div>
-    <a href="#" class="candidate_name_text_img">
-      <img class="candidate_name" src="./assets/img/Logo (1).png" alt="候選人名字">
-    </a>
-    <div class="menu">
-      <span class="menu_title">Menu</span>
-      <div class="menu_link">
-        <div class="menu_link_container">
-          <a href="#index" class="menu_link_item">首頁</a>
-          <a href="#news" class="menu_link_item">最新活動</a>
-          <a href="#public_feedback" class="menu_link_item">民眾服務信箱</a>
-        </div>
-        <div class="menu_link_container">
-          <a href="#cover" class="menu_link_item">候選人主張</a>
-          <a href="#policy" class="menu_link_item">政策議題</a>
-          <a href="#donation" class="menu_link_item">小額捐款</a>
-        </div>
-      </div>
-    </div>
-    <div class="office_information">
-      <span class="office_information_title">Office information</span>
-      <address>
-        <span class="address">地址：<a href="https://www.google.com.tw/maps/place/台北市喵星區毛茸茸大道88號喵喵大樓3樓">台北市喵星區毛茸茸大道88號喵喵大樓3樓</a></span>
-        <span class="phone">電話：<a href="tel:(02)888-5678">(02)888-5678</a></span>
-        <span class="mail">郵件：<a href="mailto:meowoffice@linmeow.tw">meowoffice@linmeow.tw</a></span>
-      </address>
-    </div>
-    <span class="copyright">版權聲明：&copy;2023 喵立翰（Miao Li-Han） 版權所有。</span>
-  </footer>
 </template>
-
 <style lang="scss" scoped>
-
-//nav
-.header{
-  nav{
-    margin: 0 5px;
-    padding:14px 17px 14px 20px;
-    border-top: 5px solid  #4527A0; 
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  
-    @include breakpoint($PC){
-      padding: 18px 151px;
-    }
-  }
-  .container-fluid{
-    padding:0;
-  }
-  .offcanvas{
-    padding: 17px 20px;
-    transition:none;
-    background-color: $main_blue;
-    text-align: right;
-    color:$white;
-  }
-  .offcanvas-header{
-    padding: 0;
-    margin-bottom: 27px;
-  }
-  .candidate_name{
-    width:150px;
-    @include breakpoint($PC){
-      width: auto;
-    }
-  }
-
-  h1{
-    line-height: 0;
-  }
-
-  .btn-close{
-    align-self: center;
-    width: 30px;
-    height: 30px;
-    padding:0px;
-    margin:0px;
-    background:none;
-    opacity: 1;
-  }
-
-  .navbar-brand{
-    display: flex;
-    align-items: center;
-    gap:3px;
-  }
-
-  .navbar-toggler{
-    padding:0;
-    border: none;
-    box-shadow: none;
-  }
-
-  .offcanvas-body{
-    padding: 0;
-    
-    .navbar-nav{
-      display: flex;
-      gap:30px;
-      @include breakpoint($PC){
-        align-items: center;
-        gap:50px;
-      }
-    }
-
-    .nav-item-phone{
-      margin-left: auto;
-      @include breakpoint($PC){
-        display:none;
-      }
-
-      h5{
-        width:fit-content;
-      }
-
-      a{
-        width:160px;
-        height:52px;
-        background:no-repeat url('./assets/img/donate.png');
-        
-        &:hover{
-          background:no-repeat url('./assets/img/Property 1=Default, Size=Small.png');
-        }
-      }
-    }
-
-    .nav-item-pc{
-      display:none;
-      @include breakpoint($PC){
-        display: block;
-      }
-
-      h5{
-        width:fit-content;
-      }
-
-      a{
-        width:160px;
-        height:52px;
-        background:no-repeat url('./assets/img/Property 1=Default, Size=Small.png');
-        
-        &:hover{
-          background:no-repeat url('./assets/img/donate.png');
-        }
-      }
-    }
-
-    h5{
-      margin-bottom: 0;
-    }
-
-    a{
-      padding: 0;
-      font-size: 20px;
-      color:$white;
-
-      @include breakpoint($PC){
-        padding-bottom: 10px;
-        color:black;
-      }
-    }
-
-    a.active{
-      border-bottom:3px solid $main_blue
-    }
-  }
-}
 
 main{
   padding: 60px 0 0;
 
   @include breakpoint($PC){
-    padding: 100px 0 0;
+    padding: 120px 0 0;
   }
 }
 .cover,.news,.public_feedback{
@@ -656,6 +461,16 @@ main{
         display:block;
         position:absolute;
         left:53px;
+      }
+    }
+
+    .miao_Li-Han_text_straight_img{
+      display: none;
+      @include breakpoint($PC){
+        display:block;
+        position:absolute;
+        top:30px;
+        right:0;
       }
     }
   }
@@ -1024,7 +839,7 @@ main{
   justify-content: center;
   align-items: center;
   padding:45px 20px;
-  background: no-repeat center/cover url('./assets/img/female-hand-with-cat-paw-kitten-s-paw-woman-finger-contrast-close-up 1.png');
+  background: no-repeat center/cover url('../assets/img/female-hand-with-cat-paw-kitten-s-paw-woman-finger-contrast-close-up 1.png');
   @include breakpoint($PC){
     justify-content: left;
     padding:45px 156px;
@@ -1230,6 +1045,7 @@ main{
     
     @include breakpoint($PC){
       justify-content: center;
+      gap:20px;
     }
 
     button{
@@ -1240,24 +1056,24 @@ main{
     .back{
       width:100px;
       height:60px;
-      background:no-repeat url('./assets/img/Property 1=Back, Size=Small.png');
+      background:no-repeat url('../assets/img/Property 1=Back, Size=Small.png');
     
       @include breakpoint($PC){
         width:176px;
         height:82px;
-        background:no-repeat url('./assets/img/Property 1=Back, Size=Large.png');
+        background:no-repeat url('../assets/img/Property 1=Back, Size=Large.png');
       }
     }
 
     .submit{
       width:180px;
       height:60px;
-      background:no-repeat url('./assets/img/Property 1=Default, Size=Medium.png');
+      background:no-repeat url('../assets/img/Property 1=Default, Size=Medium.png');
     
       @include breakpoint($PC){
-        width:176px;
+        width:222px;
         height:82px;
-        background:no-repeat url('./assets/img/Property 1=Default, Size=Large.png');
+        background:no-repeat url('../assets/img/Property 1=Default, Size=Large.png');
       }
     }
   }
@@ -1305,12 +1121,12 @@ main{
         border: 0;
         width:100px;
         height:60px;
-        background:no-repeat url('./assets/img/Property 1=Back, Size=Small.png');
+        background:no-repeat url('../assets/img/Property 1=Back, Size=Small.png');
     
         @include breakpoint($PC){
           width:176px;
           height:82px;
-          background:no-repeat url('./assets/img/Property 1=Back, Size=Large.png');
+          background:no-repeat url('../assets/img/Property 1=Back, Size=Large.png');
         }
       }
     }
@@ -1440,12 +1256,12 @@ main{
         border: 0;
         width:100px;
         height:60px;
-        background:no-repeat url('./assets/img/Property 1=Back, Size=Small.png');
+        background:no-repeat url('../assets/img/Property 1=Back, Size=Small.png');
     
         @include breakpoint($PC){
           width:176px;
           height:82px;
-          background:no-repeat url('./assets/img/Property 1=Back, Size=Large.png');
+          background:no-repeat url('../assets/img/Property 1=Back, Size=Large.png');
         }
       }
     }
@@ -1459,115 +1275,4 @@ main{
     }
   }
 }
-
-.cat_img{
-  position: absolute;
-  top: -120.864px;
-  left: 18px;
-  @include breakpoint($PC){
-    top:-181.229px;
-    left: 240px;
-  }
-    
-    img{
-    width: 355px;
-
-    @include breakpoint($PC){
-      width: 530px;
-    }
-  }
-}
-
-footer{
-  padding:30px 21px 15px;
-  position: relative;
-  @include breakpoint($PC){
-    padding:15px 156px;
-    display:flex;
-    flex-wrap: wrap;
-  }
-}
-
-.candidate_name_text_img{
-  display: none;
-  @include breakpoint($PC){
-    display: block;
-    margin-top: 23px;
-    margin-right:318px;
-  }
-}
-.menu{
-  margin-bottom: 60px;
-  text-align: center;
-  @include breakpoint($PC){
-    flex-grow: 100%;
-    margin-right: 60px;
-    margin-bottom: 0;
-  }
-  &_title{
-    display:block;
-    margin-bottom: 10px;
-    font-size: $font_small;
-    color:$secondary_orange;
-  }
-
-  &_link{
-    display: flex;
-    justify-content: center;
-    gap:50px;
-
-    a{
-      display: block;
-      margin-bottom: 5px;
-      font-size: $font_normal;
-      color:$light5;
-
-      &:nth-child(3n){
-        margin-bottom: 0px;
-      }
-    }
-  }
-}
-
-.office_information{
-  margin-bottom: 20px;
-  @include breakpoint($PC){
-    flex-grow: 30%;
-  }
-  &_title{
-    display:block;
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: $font_small;
-    color:$secondary_orange;
-  }
-
-  address{
-    display:flex;
-    flex-direction: column;
-    gap:5px;
-
-    span{
-      display:block;
-      font-size: $font_normal;
-      color:$light5;
-    }
-
-    .mail a{
-      text-decoration:underline;
-    }
-  }
-}
-
-.copyright{
-  display:block;
-  text-align: center;
-  font-size: $font_small;
-  color:$dark5;
-
-  @include breakpoint($PC){
-    flex-grow: 1;
-  }
-}
-
 </style>
