@@ -11,6 +11,8 @@ body {
   min-width: 393px;
   background-color: #4527A0;
   margin: 0;
+  border: 5px solid  #4527A0;
+
 }
 
 a{

@@ -1,0 +1,8 @@
+$tablet:768px;
+$PC: 1512px;
+
+@mixin breakpoint($min-width){
+  @media(min-width:$min-width) {
+    @content;
+  } 
+}
