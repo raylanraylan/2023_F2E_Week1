@@ -120,6 +120,7 @@ footer{
   address{
     display:flex;
     flex-direction: column;
+    justify-content: center;
     gap:5px;
 
     span{
