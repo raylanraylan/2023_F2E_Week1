@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted,ref } from 'vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import counterUp from 'counterup2';
@@ -11,6 +11,12 @@ onMounted(()=>{
     duration: 1000,
     delay: 16,
   } )
+})
+
+const toggleDonation = ref(true);
+const donationAmount = ref(null);
+const chooseDonationPlan = ((event)=>{
+  donationAmount.value = event.target.dataset.amount
 })
 
 </script>
@@ -135,26 +141,26 @@ import '../assets/splide.css';
               <span class="month">DEC.</span>
             </time>
             <div class="card-img">
-              <img src="../assets/img/activity01.png" class="card-img-top" alt="">
+              <img src="../assets/img/activity02.png" class="card-img-top" alt="">
             </div>
             <div class="card-body">
-              <h5 class="card-title">參與台北寵物論壇 爭取貓咪友善環境</h5>
-              <p class="card-text">炎炎夏日的周六，我走進了台北寵物論壇，帶著一副貓耳髮箍，決定要全力宣傳「貓咪至上」的理念！我相信，我們的都市中，每一隻貓咪都應該有自己的 VIP 休憩空間。</p>
+              <h5 class="card-title">帶著你的貓耳，來和我一起走！</h5>
+              <p class="card-text">街上氣氛真的很棒，從小孩到大人，甚至有些狗狗朋友都帶著貓耳來找我握手，真的太可愛了！這次的活動不僅讓我看到大家的熱情，更加堅定了我推進「貓咪友善環境」政策的決心。</p>
             </div>
           </div>
         </SplideSlide>
         <SplideSlide>
           <div class="card">
             <time class="card_date">
-              <span class="day">26</span>
+              <span class="day">20</span>
               <span class="month">DEC.</span>
             </time>
             <div class="card-img">
-              <img src="../assets/img/activity01.png" class="card-img-top" alt="">
+              <img src="../assets/img/activity03.png" class="card-img-top" alt="">
             </div>
             <div class="card-body">
-              <h5 class="card-title">參與台北寵物論壇 爭取貓咪友善環境</h5>
-              <p class="card-text">炎炎夏日的周六，我走進了台北寵物論壇，帶著一副貓耳髮箍，決定要全力宣傳「貓咪至上」的理念！我相信，我們的都市中，每一隻貓咪都應該有自己的 VIP 休憩空間。</p>
+              <h5 class="card-title">收容所模特兒大比拼！</h5>
+              <p class="card-text">活動三消息內容：今天的收容所不再是一片寂靜。為了讓更多人認識到這裡的毛孩子，我們舉辦了一場前所未有的「模特兒走秀」！</p>
             </div>
           </div>
         </SplideSlide>
@@ -178,23 +184,23 @@ import '../assets/splide.css';
         </div>
         <div class="card_old_news">
           <div class="card">
-            <img src="../assets/img/activity01.png" class="card-img-top" alt="活動照片">
+            <img src="../assets/img/activity02.png" class="card-img-top" alt="活動照片">
             <div class="card-body">
               <time class="card_date">
                 <span class="date">2023.12.26</span>
               </time>
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+              <h5 class="card-title">帶著你的貓耳，來和我一起走！</h5>
+              <p class="card-text">街上氣氛真的很棒，從小孩到大人，甚至有些狗狗朋友都帶著貓耳來找我握手，真的太可愛了！這次的活動不僅讓我看到大家的熱情，更加堅定了我推進「貓咪友善環境」政策的決心。</p>
             </div>
           </div>
           <div class="card">
-            <img src="../assets/img/activity01.png" class="card-img-top" alt="活動照片">
+            <img src="../assets/img/activity03.png" class="card-img-top" alt="活動照片">
             <div class="card-body">
               <time class="card_date">
-                <span class="date">2023.12.26</span>
+                <span class="date">2023.12.20</span>
               </time>
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+              <h5 class="card-title">收容所模特兒大比拼！</h5>
+              <p class="card-text">活動三消息內容：今天的收容所不再是一片寂靜。為了讓更多人認識到這裡的毛孩子，我們舉辦了一場前所未有的「模特兒走秀」！</p>
             </div>
           </div>
         </div>  
@@ -251,15 +257,14 @@ import '../assets/splide.css';
     </section>
     <section class="donation" id="donation" data-aos="fade-up">
       <div class="donation_container">
-        <div class="donation_description">
+        <div class="donation_description" v-if="toggleDonation">
           <div class="donation_title_text_img_small">
             <img src="../assets/img/small donation.png" alt="小額捐款">
           </div>
           <div class="donation_title_text_img_large">
             <img src="../assets/img/small donation_large.png" alt="小額捐款">
           </div>
-          <p class="donation_text">您的小筆捐款，
-            是每隻毛孩未來的大大動力！</p>
+          <p class="donation_text">您的小筆捐款，是每隻毛孩未來的大大動力！</p>
           <div class="donation_totalAmount">
             <div class="donation_totalAmount_text_img_small">
               <img src="../assets/img/total amount.png" alt="累積總金額">
@@ -269,38 +274,38 @@ import '../assets/splide.css';
             </div>
             <div class="counter"><span class="total_amount">NT$<span class="number">987,655,873</span></span></div>
           </div>
-          <button type="button" class="donation_button_small">
+          <button type="button" class="donation_button_small" @click="toggleDonation = !toggleDonation">
             <img src="../assets/img/Btn.png" alt="前往捐款">
           </button>
-          <button type="button" class="donation_button_large">
+          <button type="button" class="donation_button_large" @click="toggleDonation = !toggleDonation">
             <img src="../assets/img/Btn (1).png" alt="前往捐款">
           </button>
         </div>
-        <form class="donation_content">
+        <form class="donation_content" v-else>
           <h4 class="donation_plan_title">選擇捐款方案</h4>
           <div class="donation_plan">
-            <div class="plan">
-              <h6>喵星人之友</h6>
-              <span class="amount">NT$600</span>
-              <span class="sponsors_number">已有 9957 人贊助</span>
+            <div class="plan" :class="{active:donationAmount==='600'}" @click="chooseDonationPlan">
+              <h6 data-amount="600">喵星人之友</h6>
+              <span class="amount" data-amount="600">NT$600</span>
+              <span class="sponsors_number" data-amount="600">已有 9957 人贊助</span>
             </div>
-            <div class="plan">
-              <h6>喵星人之友</h6>
-              <span class="amount">NT$600</span>
-              <span class="sponsors_number">已有 9957 人贊助</span>
+            <div class="plan" data-amount="6000" :class="{active:donationAmount==='6000'}" @click="chooseDonationPlan">
+              <h6 data-amount="6000">喵星大使</h6>
+              <span class="amount" data-amount="6000">NT$6000</span>
+              <span class="sponsors_number" data-amount="6000">已有 2000 人贊助</span>
             </div>
-            <div class="plan">
-              <h6>喵星人之友</h6>
-              <span class="amount">NT$600</span>
-              <span class="sponsors_number">已有 9957 人贊助</span>
+            <div class="plan" data-amount="60000" :class="{active:donationAmount==='60000'}"  @click="chooseDonationPlan">
+              <h6 data-amount="60000">喵星傳奇</h6>
+              <span class="amount" data-amount="60000">NT$60000</span>
+              <span class="sponsors_number" data-amount="60000">已有 9957 人贊助</span>
             </div>
-            <div class="plan">
-              <h6>自訂捐款金額</h6>
-              <input class="input_amount" type="text" placeholder="請輸入捐款金額">
+            <div class="plan" data-amount="random" :class="{active:donationAmount==='random'}" @click="chooseDonationPlan">
+              <h6 data-amount="random">自訂捐款金額</h6>
+              <input class="input_amount" data-amount="random" type="text" placeholder="請輸入捐款金額">
             </div>
           </div>
           <div class="button_container">
-            <button class="back"></button>
+            <button class="back" @click="toggleDonation = !toggleDonation"></button>
             <button class="submit" type="button" data-bs-toggle="modal" data-bs-target="#donationSubmit"></button>
           </div>
           <div class="modal fade" id="donationSubmit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -334,19 +339,19 @@ import '../assets/splide.css';
         </div>
         <div class="form_content">
           <div class="form-floating">
-            <input type="text" class="form-control" id="nameInput" placeholder="">
+            <input type="text" class="form-control" id="nameInput">
             <label for="nameInput">您的姓名</label>
           </div>
           <div class="form-floating">
-            <input type="email" class="form-control" id="emailInput" placeholder="">
+            <input type="email" class="form-control" id="emailInput">
             <label for="emailInput">您的Email</label>
           </div>
           <div class="form-floating">
-            <input type="text" class="form-control" id="phoneInput" placeholder="">
+            <input type="text" class="form-control" id="phoneInput">
             <label for="phoneInput">您的手機</label>
           </div>
           <div class="form-floating">
-            <textarea class="form-control" id="messageInput" placeholder=""></textarea>
+            <textarea class="form-control" id="messageInput"></textarea>
             <label for="messageInput">您的建言</label>
           </div>
           <button type="button" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#feedbackSubmit">
@@ -968,15 +973,20 @@ main{
       flex-wrap: wrap;
     }
   
+    .plan.active{
+        border:solid 2px $main_blue;
+      }
+    }
     .plan{
       display: flex;
       flex-direction: column;
-      // flex-grow: 1;
       gap:5px;
       padding: 15px 3px;
       border:solid 2px $light1;
       border-radius:8px;
       background-color: $white;
+
+      cursor: pointer;
       @include breakpoint($PC){
         flex:1;
         padding: 15px 20px;
@@ -996,7 +1006,6 @@ main{
           }
         }
       }
-    }
 
     h6{
       margin-bottom: 0;
