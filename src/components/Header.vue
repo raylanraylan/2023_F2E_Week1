@@ -2,13 +2,21 @@
 import { ref } from 'vue';
 
 const activeLink = ref(null);
+const offcanvas = ref(null);
+// const closeOffcanvas = ()=>{
+//   offcanvas.value.classList.remove('show');
+//   document.querySelector('.offcanvas-backdrop').remove();
+//   document.body.style.overflow='auto';
+// }
 
-const changeBorder = (event)=>{
-  activeLink.value = event.target.dataset.name
+const addUnderline = (event)=>{
+  // closeOffcanvas();
+  if (window.innerWidth<1512) return;
+  activeLink.value = event.target.dataset.name;
 }
 </script>
 <template>
-  <header class="header" id="index" data-aos="fade-up">
+  <header class="header" id="index">
     <nav class="navbar bg-body-tertiary fixed-top navbar-expand-xxl">
       <div class="container-fluid">
         <a class="navbar-brand" href="#index">
@@ -29,19 +37,35 @@ const changeBorder = (event)=>{
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1">
               <li class="nav-item">
-                <h5><a class="nav-link" data-name="cover" :class="{active:activeLink==='cover'}" aria-current="page" href="#cover" @click="changeBorder">候選人主張</a></h5>
+                <h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <a class="nav-link" data-name="cover" :class="{active:activeLink==='cover'}" aria-current="page" href="#cover" @click="addUnderline">候選人主張</a>
+                  </button>
+                </h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" data-name="news" :class="{active:activeLink==='news'}" href="#news" @click="changeBorder">最新活動</a></h5>
+                <h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <a class="nav-link" data-name="news" :class="{active:activeLink==='news'}" href="#news" @click="addUnderline">最新活動</a>
+                  </button>
+                </h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" data-name="policy" :class="{active:activeLink==='policy'}" href="#policy" @click="changeBorder">政策議題</a></h5>
+                <h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <a class="nav-link" data-name="policy" :class="{active:activeLink==='policy'}" href="#policy" @click="addUnderline">政策議題</a>
+                  </button>
+                </h5>
               </li>
               <li class="nav-item">
-                <h5><a class="nav-link" data-name="public_feedback" :class="{active:activeLink==='public_feedback'}" href="#public_feedback" @click="changeBorder">民眾服務信箱</a></h5>
+                <h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <a class="nav-link" data-name="public_feedback" :class="{active:activeLink==='public_feedback'}" href="#public_feedback" @click="addUnderline">民眾服務信箱</a>
+                  </button>
+                </h5>
               </li>
               <li class="nav-item nav-item-phone">
-                <h5><a class="nav-link" href="#donation" @click="changeBorder"></a></h5>
+                <h5><a class="nav-link" href="#donation" @click="addUnderline"></a></h5>
               </li>
               <li class="nav-item nav-item-pc">
                 <h5>
@@ -56,6 +80,7 @@ const changeBorder = (event)=>{
   </header>
 </template>
 <style lang="scss">
+
 .header{
   nav{
     margin: 0 5px;
@@ -79,7 +104,7 @@ const changeBorder = (event)=>{
   }
   .offcanvas-header{
     padding: 0;
-    margin-bottom: 27px;
+    margin-bottom: 25px;
   }
   .candidate_name{
     width:150px;
@@ -122,10 +147,23 @@ const changeBorder = (event)=>{
     
     .navbar-nav{
       display: flex;
-      gap:30px;
       @include breakpoint($PC){
         align-items: center;
         gap:50px;
+      }
+    }
+
+    .nav-item{
+      .btn-close{
+        --bs-btn-close-bg:none;
+        padding: 0;
+        width: auto;
+        height: auto;
+        font-size: 20px;
+      }
+
+      &:nth-child(4){
+        margin-bottom: 15px;
       }
     }
 
@@ -176,18 +214,15 @@ const changeBorder = (event)=>{
     }
 
     a.nav-link{
-      padding: 0;
-      font-size: 20px;
       color:$white;
-
+      padding: 15px 0;
       @include breakpoint($PC){
-        padding-bottom: 10px;
         color:black;
       }
     }
 
-    a.active{
-      border-bottom:3px solid $main_blue
+    a.active{ 
+      border-bottom:3px solid $main_blue;
     }
   }
 }
