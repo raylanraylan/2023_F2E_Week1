@@ -3,11 +3,6 @@ import { ref } from 'vue';
 
 const activeLink = ref(null);
 const offcanvas = ref(null);
-// const closeOffcanvas = ()=>{
-//   offcanvas.value.classList.remove('show');
-//   document.querySelector('.offcanvas-backdrop').remove();
-//   document.body.style.overflow='auto';
-// }
 
 const addUnderline = (event)=>{
   // closeOffcanvas();
@@ -162,9 +157,9 @@ const addUnderline = (event)=>{
         font-size: 20px;
       }
 
-      &:nth-child(4){
-        margin-bottom: 15px;
-      }
+      // &:nth-child(4){
+      //   margin-bottom: 15px;
+      // }
     }
 
     .nav-item-phone{
