@@ -10,7 +10,6 @@ onMounted(()=>{
   } )
 
   const test = document.querySelector('.donation')
-  console.log(test);
 })
 
 const toggleDonation = ref(true);
@@ -272,9 +271,14 @@ const inputOtherAmount = ((event)=>{
         }
 
         .input_amount{
+          outline: none;
           @include breakpoint($PC){
             padding: 14px 12px;
           }
+
+          // &:focus-visible{
+          //   border: 1px solid $light2;
+          // }
         }
       }
 

@@ -1,4 +1,14 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+const formInputs = ref('');
+const submit = ()=>{
+  // const form
+
+  // for(const node of formContent.value.childNodes){
+  //   node
+  // }
+}
+</script>
 <template>
   <section class="public_feedback" id="public_feedback">
     <form class="public_feedback_container">
@@ -9,23 +19,13 @@
         <p class="public_feedback_text">親愛的鄉親，每一位市民的意見都是我們社區前進的原動力。無論大小事，我都誠摯希望聽到您的建議。分享您的想法，一同為我們的未來打造更美好！</p>
       </div>
       <div class="form_content">
-        <div class="form-floating">
-          <input type="text" class="form-control" id="nameInput">
-          <label for="nameInput">您的姓名</label>
+        <div class="form_inputs" ref="formInputs">
+          <input type="text" class="form-control" id="nameInput" placeholder="您的姓名" required>
+          <input type="email" class="form-control" id="emailInput" placeholder="您的Email" required>
+          <input type="tel" class="form-control" id="phoneInput" placeholder="您的手機" required>
+          <textarea class="form-control" id="messageInput" placeholder="您的建言" required></textarea>
         </div>
-        <div class="form-floating">
-          <input type="email" class="form-control" id="emailInput">
-          <label for="emailInput">您的Email</label>
-        </div>
-        <div class="form-floating">
-          <input type="text" class="form-control" id="phoneInput">
-          <label for="phoneInput">您的手機</label>
-        </div>
-        <div class="form-floating">
-          <textarea class="form-control" id="messageInput"></textarea>
-          <label for="messageInput">您的建言</label>
-        </div>
-        <button type="button" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#feedbackSubmit">
+        <button type="button" @click="submit" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#feedbackSubmit">
           <img src="@/assets/img/submit.png" alt="送出意見的按鍵">
         </button>
       </div>  
@@ -105,17 +105,35 @@
   .form_content{
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap:20px;
     @include breakpoint($PC){
       flex-grow: 1;
-      padding: 30px 97px 0;
-    }  
+      padding: 30px 97px;
+    }
+  }
+  
+  .form_inputs{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
   }
 
-  form-control,label{
+  .form-control,label{
     padding: 10px;
     font-size: $font_normal;
-    color:#C1C1C1;
+  }
+
+  .form-control{
+    &:focus-visible{
+      border: 1px solid $light2;
+      box-shadow:none;
+    }
+    &:invalid{
+      border: 1px solid #FF3B3B;
+    }
+    &::placeholder{
+      color:#C1C1C1;
+    }
   }
 
   input,textarea{
@@ -132,11 +150,17 @@
 
   .public_feedback_submit{
     border: none;
+    padding: 0;
     background-color: #E3E3E3;
 
-    &:active{
+    &:hover{
       background-color: #E3E3E3;
     }
+  }
+
+  //去掉btn背景
+  :not(.btn-check) + .btn:active{
+    background-color: #E3E3E3;
   }
 
   .modal_set{
