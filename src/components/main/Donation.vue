@@ -8,28 +8,26 @@ onMounted(()=>{
     duration: 1000,
     delay: 16,
   } )
-
-  const test = document.querySelector('.donation')
 })
 
 const toggleDonation = ref(true);
+//選到的計畫換框線的顏色
 const donationPlan = ref(null);
+//該計畫選到的金額
 const donationAmount = ref(null);
 
 const chooseDonationPlan = ((event)=>{
   donationPlan.value = event.target.dataset.id
+  //如果不是自行輸入的金額，就return
   if (event.target.dataset.amount==='random') return;
   donationAmount.value = event.target.dataset.amount
 })
 
 const inputOtherAmount = ((event)=>{
+  //自行輸入的金額
   donationAmount.value = event.target.value;
 })
 
-// const checkRandom = ()=>{
-//   if (donationAmount.value===' ') return true;
-//   if (donationAmount.value) return true;
-// }
 
 </script>
 <template>

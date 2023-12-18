@@ -262,6 +262,10 @@ import '@/assets/splide.css';
       .card{
         // width:483px;
         padding-bottom: 20px;
+        @include breakpoint($PC){
+          height:100%;
+          padding-bottom: 0;
+        }
       }
 
       .card_date{
@@ -274,6 +278,7 @@ import '@/assets/splide.css';
         height:325px;
         object-fit:cover;
       }
+
 
       .day{
         font-size:36px;
@@ -306,6 +311,7 @@ import '@/assets/splide.css';
         width:276px;
         height:232px;
         object-fit:cover;
+        border-radius: 8px 0 0 8px;
       }
 
       .card-body{

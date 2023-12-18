@@ -6,7 +6,7 @@ import Cover from './main/Cover.vue';
 import News from './main/News.vue';
 import Policy from './main/Policy.vue';
 import Donation from './main/Donation.vue';
-import Public_feedback from './main/Public_feedback.vue'
+import PublicFeedback from './main/PublicFeedback.vue'
 
 AOS.init();
 </script>
@@ -16,7 +16,7 @@ AOS.init();
     <News data-aos="fade-up"></News>
     <Policy data-aos="fade-up"></Policy>
     <Donation data-aos="fade-up"></Donation>
-    <Public_feedback data-aos="fade-up"></Public_feedback>
+    <PublicFeedback></PublicFeedback>
   </main>
 </template>
 <style lang="scss" scoped>
