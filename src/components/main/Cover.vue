@@ -1,4 +1,20 @@
 <script setup>
+import { nextTick, onMounted,ref } from 'vue';
+const straightChineseName = ref('');
+const horizontalEnglishName = ref('');
+onMounted(()=>{
+  nextTick(()=>{
+    window.addEventListener('scroll', () => {
+      const originDistanceY = 30;
+      const positionY = window.scrollY - originDistanceY
+      straightChineseName.value.style.top = `${-positionY}px`
+
+      const originDistanceX = 53;
+      const positionX = originDistanceX - window.scrollY
+      horizontalEnglishName.value.style.left = `${positionX}px`
+    });
+  })
+})
 </script>
 <template>
     <section class="cover">
@@ -41,10 +57,10 @@
             <div class="miao_Li-Han_text_img_phone">
               <img src="@/assets/img/Miao Li-Han.png">
             </div>
-            <div class="miao_Li-Han_text_img_pc">
+            <div class="miao_Li-Han_text_img_pc" ref="horizontalEnglishName">
               <img src="@/assets/img/Miao Li-Han (1).png">
             </div>
-            <div class="miao_Li-Han_text_straight_img">
+            <div class="miao_Li-Han_text_straight_img" ref="straightChineseName">
               <img src="@/assets/img/Miao Li-Han_straight.png">
             </div>
             <div class="cover_text_phone" id="cover">
