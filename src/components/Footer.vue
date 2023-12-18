@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <footer data-aos="fade-up">
+  <footer>
     <div class="cat_img">
       <img src="../assets/img/Mokker (6) 1.png" alt="貓咪照片"> 
     </div>

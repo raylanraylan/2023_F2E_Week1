@@ -8,13 +8,29 @@ onMounted(()=>{
     duration: 1000,
     delay: 16,
   } )
+
+  const test = document.querySelector('.donation')
+  console.log(test);
 })
 
 const toggleDonation = ref(true);
+const donationPlan = ref(null);
 const donationAmount = ref(null);
+
 const chooseDonationPlan = ((event)=>{
+  donationPlan.value = event.target.dataset.id
+  if (event.target.dataset.amount==='random') return;
   donationAmount.value = event.target.dataset.amount
 })
+
+const inputOtherAmount = ((event)=>{
+  donationAmount.value = event.target.value;
+})
+
+// const checkRandom = ()=>{
+//   if (donationAmount.value===' ') return true;
+//   if (donationAmount.value) return true;
+// }
 
 </script>
 <template>
@@ -47,29 +63,29 @@ const chooseDonationPlan = ((event)=>{
         <form class="donation_content" v-else>
           <h4 class="donation_plan_title">選擇捐款方案</h4>
           <div class="donation_plan">
-            <div class="plan" :class="{active:donationAmount==='600'}" @click="chooseDonationPlan">
-              <h6 data-amount="600">喵星人之友</h6>
-              <span class="amount" data-amount="600">NT$600</span>
-              <span class="sponsors_number" data-amount="600">已有 9957 人贊助</span>
+            <div class="plan" data-amount="600" data-id="amount_600" :class="{active:donationPlan==='amount_600'}" @click="chooseDonationPlan">
+              <h6 data-amount="600" data-id="amount_600">喵星人之友</h6>
+              <span class="amount" data-amount="600" data-id="amount_600">NT$600</span>
+              <span class="sponsors_number" data-amount="600" data-id="amount_600">已有 9957 人贊助</span>
             </div>
-            <div class="plan" data-amount="6000" :class="{active:donationAmount==='6000'}" @click="chooseDonationPlan">
-              <h6 data-amount="6000">喵星大使</h6>
-              <span class="amount" data-amount="6000">NT$6000</span>
-              <span class="sponsors_number" data-amount="6000">已有 2000 人贊助</span>
+            <div class="plan" data-amount="6000" data-id="amount_6000" :class="{active:donationPlan==='amount_6000'}" @click="chooseDonationPlan">
+              <h6 data-amount="6000" data-id="amount_6000">喵星大使</h6>
+              <span class="amount" data-amount="6000" data-id="amount_6000">NT$6000</span>
+              <span class="sponsors_number" data-amount="6000" data-id="amount_6000">已有 2000 人贊助</span>
             </div>
-            <div class="plan" data-amount="60000" :class="{active:donationAmount==='60000'}"  @click="chooseDonationPlan">
-              <h6 data-amount="60000">喵星傳奇</h6>
-              <span class="amount" data-amount="60000">NT$60000</span>
-              <span class="sponsors_number" data-amount="60000">已有 9957 人贊助</span>
+            <div class="plan" data-amount="60000" data-id="amount_60000" :class="{active:donationPlan==='amount_60000'}" @click="chooseDonationPlan">
+              <h6 data-amount="60000" data-id="amount_60000">喵星傳奇</h6>
+              <span class="amount" data-amount="60000" data-id="amount_60000">NT$60000</span>
+              <span class="sponsors_number" data-amount="60000" data-id="amount_60000">已有 9957 人贊助</span>
             </div>
-            <div class="plan" data-amount="random" :class="{active:donationAmount==='random'}" @click="chooseDonationPlan">
-              <h6 data-amount="random">自訂捐款金額</h6>
-              <input class="input_amount" data-amount="random" type="text" placeholder="請輸入捐款金額">
-            </div>
+            <div class="plan" data-amount="random" data-id="amount_random" :class="{active:donationPlan==='amount_random'}" @click="chooseDonationPlan">
+              <h6 data-amount="random" data-id="amount_random">自訂捐款金額</h6>
+              <input class="input_amount" data-id="amount_random" type="text" placeholder="請輸入捐款金額" @input="inputOtherAmount">
+            </div>  
           </div>
           <div class="button_container">
             <button class="back" @click="toggleDonation = !toggleDonation"></button>
-            <button class="submit" type="button" data-bs-toggle="modal" data-bs-target="#donationSubmit"></button>
+            <button class="submit" type="button" data-bs-toggle="modal" data-bs-target="#donationSubmit" @click="checkRandom"></button>
           </div>
           <div class="modal fade" id="donationSubmit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -81,7 +97,7 @@ const chooseDonationPlan = ((event)=>{
                   <div class="amount_text">
                     <img src="@/assets/img/donation.png" alt="捐款金額文字">
                   </div>
-                  <span class="amount">NT$<span>6,000</span></span>
+                  <span class="amount">NT$<span>{{ donationAmount }}</span></span>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#staticBackdrop"></button>
@@ -255,7 +271,7 @@ const chooseDonationPlan = ((event)=>{
           height:90px;
         }
 
-        input{
+        .input_amount{
           @include breakpoint($PC){
             padding: 14px 12px;
           }

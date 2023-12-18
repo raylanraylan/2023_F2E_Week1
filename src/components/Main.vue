@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted,ref } from 'vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

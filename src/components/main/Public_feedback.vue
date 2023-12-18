@@ -108,7 +108,7 @@
     gap:10px;
     @include breakpoint($PC){
       flex-grow: 1;
-      padding-top: 30px;
+      padding: 30px 97px 0;
     }  
   }
 
