@@ -1,13 +1,20 @@
 <script setup>
 import { ref } from 'vue'
+import { Modal } from '../../../node_modules/bootstrap/js/index.esm.js'
 const formInputs = ref('');
+const modal = ref('');
+const allInputsValid = ref('');
 const submit = ()=>{
-  // const form
+  const inputs = formInputs.value.childNodes;
+  allInputsValid.value = Array.from(inputs).every(input => input.checkValidity());
 
-  // for(const node of formContent.value.childNodes){
-  //   node
-  // }
+  if (allInputsValid.value) {
+    new Modal(modal.value).toggle();
+    // modal.value;
+    console.log('submit');
+  }
 }
+
 </script>
 <template>
   <section class="public_feedback" id="public_feedback">
@@ -25,11 +32,11 @@ const submit = ()=>{
           <input type="tel" class="form-control" id="phoneInput" placeholder="您的手機" required>
           <textarea class="form-control" id="messageInput" placeholder="您的建言" required></textarea>
         </div>
-        <button type="button" @click="submit" class="btn btn-primary public_feedback_submit" data-bs-toggle="modal" data-bs-target="#feedbackSubmit">
+        <button type="button" @click="submit" class="btn btn-primary public_feedback_submit" data-bs-target="#feedbackSubmit">
           <img src="@/assets/img/submit.png" alt="送出意見的按鍵">
         </button>
       </div>  
-      <div class="modal fade modal_set" id="feedbackSubmit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal fade modal_set" ref="modal" id="feedbackSubmit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
