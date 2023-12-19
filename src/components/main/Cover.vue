@@ -5,13 +5,13 @@ const horizontalEnglishName = ref('');
 onMounted(()=>{
   nextTick(()=>{
     window.addEventListener('scroll', () => {
-      const originDistanceY = 30;
-      const positionY = window.scrollY - originDistanceY
-      straightChineseName.value.style.top = `${-positionY}px`
+      const initialChineseDistanceFromTop = 30;
+      const chinesePositionY = window.scrollY - initialChineseDistanceFromTop
+      straightChineseName.value.style.top = `${-chinesePositionY}px`
 
-      const originDistanceX = 53;
-      const positionX = originDistanceX - window.scrollY
-      horizontalEnglishName.value.style.left = `${positionX}px`
+      const initialEnglishDistanceFromLeft = 53;
+      const englishPositionX = initialEnglishDistanceFromLeft - window.scrollY
+      horizontalEnglishName.value.style.left = `${englishPositionX}px`
     });
   })
 })

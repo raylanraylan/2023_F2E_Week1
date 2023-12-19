@@ -14,7 +14,7 @@ const toggleDonation = ref(true);
 //選到的計畫換框線的顏色
 const donationPlan = ref(null);
 //該計畫選到的金額
-const donationAmount = ref(null);
+const donationAmount = ref(0);
 
 const chooseDonationPlan = ((event)=>{
   donationPlan.value = event.target.dataset.id
