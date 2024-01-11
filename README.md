@@ -4,7 +4,10 @@
 ## Demo展示
 https://raylanraylan.github.io/2023_F2E_Week1/
 
+
 ## 使用功能
+- 前端框架版本：Vue3
+- Vite建立檔案與打包
 - Bootstrap：使用元件
 - aos：在一頁式中的區塊中，套用過渡效果
 - counterup2：套用數字計算動畫
