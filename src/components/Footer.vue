@@ -24,11 +24,11 @@
     </div>
     <div class="office_information">
       <span class="office_information_title">Office information</span>
-      <address>
-        <span class="address">地址：<a href="https://www.google.com.tw/maps/place/台北市喵星區毛茸茸大道88號喵喵大樓3樓">台北市喵星區毛茸茸大道88號喵喵大樓3樓</a></span>
-        <span class="phone">電話：<a href="tel:(02)888-5678">(02)888-5678</a></span>
-        <span class="mail">郵件：<a href="mailto:meowoffice@linmeow.tw">meowoffice@linmeow.tw</a></span>
-      </address>
+      <ul>
+        <li class="address">地址：<a href="https://www.google.com.tw/maps/place/台北市喵星區毛茸茸大道88號喵喵大樓3樓">台北市喵星區毛茸茸大道88號喵喵大樓3樓</a></li>
+        <li class="phone">電話：<a href="tel:(02)888-5678">(02)888-5678</a></li>
+        <li class="mail">郵件：<a href="mailto:meowoffice@linmeow.tw">meowoffice@linmeow.tw</a></li>
+      </ul>
     </div>
     <span class="copyright">版權聲明：&copy;2023 喵立翰（Miao Li-Han） 版權所有。</span>
   </footer>
@@ -117,16 +117,21 @@ footer{
     color:$secondary_orange;
   }
 
-  address{
+  ul{
     display:flex;
     flex-direction: column;
     justify-content: center;
     gap:5px;
 
-    span{
+    li{
       display:block;
       font-size: $font_normal;
       color:$light5;
+      list-style: none;
+      text-align: center;
+      @include breakpoint($PC){
+        text-align: initial;
+      }
     }
 
     .mail a{
